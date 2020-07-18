@@ -93,6 +93,11 @@ func resourceACMECertificateV4() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"disable_check_propagation": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"must_staple": {
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -278,6 +283,10 @@ func resourceACMECertificateCreate(d *schema.ResourceData, meta interface{}) err
 		opts = append(opts, dns01.AddRecursiveNameservers(s))
 	}
 
+	if d.Get("disable_check_propagation").(bool) {
+		opts = append(opts, dns01.DisableCompletePropagationRequirement())
+	}
+
 	if err := client.Challenge.SetDNS01Provider(provider, opts...); err != nil {
 		return err
 	}
@@ -450,6 +459,10 @@ func resourceACMECertificateUpdate(d *schema.ResourceData, meta interface{}) err
 		}
 
 		opts = append(opts, dns01.AddRecursiveNameservers(s))
+	}
+
+	if d.Get("disable_check_propagation").(bool) {
+		opts = append(opts, dns01.DisableCompletePropagationRequirement())
 	}
 
 	if err := client.Challenge.SetDNS01Provider(provider, opts...); err != nil {
