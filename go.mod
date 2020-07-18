@@ -14,7 +14,6 @@ require (
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
 	github.com/hashicorp/terraform v0.12.6
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
-	github.com/kr/pty v1.1.3 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/mattn/go-isatty v0.0.7 // indirect
 	github.com/miekg/dns v1.1.15
@@ -30,8 +29,9 @@ require (
 
 replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.3.0+incompatible
-	github.com/golang/lint => golang.org/x/lint v0.0.0-20190409202823-959b441ac422
 	github.com/h2non/gock => gopkg.in/h2non/gock.v1 v1.0.14
 	github.com/ldez/go-auroradns => github.com/ldez/go-auroradns/v2 v2.0.2
 	sourcegraph.com/sourcegraph/go-diff => github.com/sourcegraph/go-diff v0.5.1
 )
+
+go 1.13
